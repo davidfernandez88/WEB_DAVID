@@ -1,0 +1,258 @@
+/*RESETEAMOS VALORES A CERO*/
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+    font-family: sans-serif;
+    text-decoration: none;
+}
+
+/******** CSS COMUN EN TODA LA PAGINA **********/
+
+body{
+    background: #333333;
+}
+
+h2 {
+    text-align: center;
+    color:#0BFDD8
+}
+ h2:hover {
+    color:#a0ebdf
+}
+ h3 {
+    font-size: 14px;
+    color:#0BFDD8
+}
+ h3:hover {
+    color:#a0ebdf
+}
+
+
+/*CONTENEDOR PADRE  ******AQUI CREAMOS LA REJILLA PRINCIPAL DE GRID********* */
+.contenedor{
+    max-width: 1500px;
+    /*GRID*/
+    /*definimos el DISPLAY COMO GRID*/
+    display: grid;
+    /*Creamos una rejilla de grid de 3x3*/
+    grid-template-columns: repeat(3, 1fr); /*numero de columnas y su ancho*/
+    grid-template-rows: repeat(3, auto); /*numero de filas y las ponemos en auto para ajustar altura a su contenido*/
+    margin: auto; /*ponemos el margen en auto para centrar el contenedor a la ventana del navegador*/
+}
+
+
+
+/********CONTENEDOR HEADER HIJO DE CONTENEDOR (cabecera)**********/
+
+header{
+    background:#2e2d2d;
+    grid-column-start: span 3; /*Hacemos spam 3 para coger el ancho del grid fusionando las tres columnas, al no poner row coge la primera fila*/
+
+    /*creamos un grid dentro para colocar logo y navegador*/
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 10px;
+    
+    /*ponemos el menu pegajoso para que este siempre presente con z-index y position*/
+    z-index: 2;
+    position: sticky;
+    top: 0;
+    left: 0;
+
+}
+/**PROPIEDADES DEL LOGO**/
+.logo{
+    color:#fff;
+	font-size:30px;
+    padding-left: 10px;
+    grid-column: 1; /*posicionamos en la primera columna*/
+}
+header .logo img{
+    height: 70px;
+    vertical-align: top;
+}
+header .logo a{
+    color: #fff;
+    line-height: 70px;
+    font-size: 15px;
+}
+header nav{
+    grid-column: 2 / span 2; /*posicionamos en la segunda columna y fusionamos dos columas partiendo de la posición 2*/
+
+    /*creamos un grid dentro para colocar los <a> del navegador*/
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* de 4 columnas con la misma proporcion*/
+    text-align: center;
+    align-items: center;
+
+
+}
+/**PROPIEDADES DEL NAVEGADOR**/
+header nav a {
+    background: #2e2d2d;
+    color: #fff;
+    padding: 10px;
+    }
+header nav a:hover{
+    background: #0BFDD8;
+    color: #2e2d2d;
+}
+
+
+
+
+/********CONTENEDOR SECTION HIJO DE CONTENEDOR **********/
+
+
+.main {
+    padding: 15px;
+    grid-column: span 2; /*fusionamos las dos primeras columnas*/
+    grid-row: 2; /*nos situamos en la fila 2*/
+}
+.main p{
+    color:#fff;
+    font-weight:lighter;
+    text-align: left;
+}
+.main article {
+    margin-bottom: 5px;
+    padding-bottom: 10px;
+} 
+
+
+
+
+
+/***********CONTENEDOR ASIDE HIJO DE CONTENEDOR***********/
+aside {
+
+    grid-row: 2 ;   /*nos situamos en la fila 2*/
+    grid-column: 3;  /*nos situamos en la columna 3*/
+
+    /* Convinamos con FLEX para colocar las imagenes*/
+
+    display: flex;
+    flex-wrap:wrap; /* si no hay espacio se pone debajo de la caja anterior*/
+    flex-direction:column; /* formato de columna*/
+    justify-content:flex-start; /*Epieze desde arriba*/
+    flex: 0 0 300px; /*valor fijo con el 0 y 200px*/
+
+}
+aside .widget {
+    width: 100%;
+    height: auto;
+    padding: 10px;
+
+    /*flex hijo de aside*/
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+aside .imagen{
+    width: 76px;
+    height: 76px;
+    margin: 5px 5px 5px 5px;
+}
+aside h2{
+   margin: 10px;
+}
+aside .imagen .png{
+    width: 75px;
+    height: 75px;
+}
+
+
+/***********CONTENEDOR FOOTER HIJO DE CONTENEDOR***********/
+
+footer {
+    background: #2e2d2d;
+    padding: 15px;
+    /*ubicacion del footer en la rejilla principal*/
+    grid-row: 3 ;
+    grid-column: 1 / span 3;
+    /*creamos un grid dentro del footer*/
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 10px;
+}
+footer .copy{
+    grid-column: 1 / span 2;
+}
+footer .copy p{
+    font-size:9pt;
+    color:#fff;
+    padding: 10px;
+}
+footer .social{
+    grid-column: 3;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+footer .social a {
+    background: #2e2d2d;
+    color: #fff;
+    padding: 10px;
+    font-size: 13px;
+    text-align: center;
+    }
+footer .social a:hover{
+    background: #0BFDD8;
+    color: #2e2d2d;
+}
+
+
+/***********RESPONSIVE*************/
+
+@media screen and (max-width: 768px){
+
+    .contenedor{
+        grid-template-rows: repeat(4, auto);
+    }
+
+    header{
+        grid-template-rows: repeat(2, auto);
+        grid-template-columns: 0;
+ 
+    }
+    .logo{
+        grid-row: 1;
+        width: 100%;
+        grid-column: 3 span;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    header nav{
+        grid-row: 2;
+        height: auto;
+    }
+    .main {
+        grid-column: span 3;
+    }
+
+    aside {
+        grid-row: 3 ;
+        grid-column: span 3;
+    }
+    footer {
+        grid-row: 4 ;
+        grid-template-rows: repeat(2, auto);
+        grid-template-columns: 0;
+    }
+    footer .copy{
+        grid-row: 1;
+        width: 100%;
+        grid-column: 3 span;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+    footer .social{
+        grid-row: 2;
+        height: auto;
+        text-align: center;
+        grid-column: span 3;
+    }
+
+}
